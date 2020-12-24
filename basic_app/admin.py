@@ -11,4 +11,5 @@ class MovieAdmin(admin.ModelAdmin):
 
 @admin.register(Session)
 class SessionAdmin(admin.ModelAdmin):
+    list_display = ('movie', 'date', 'time',)
     list_filter = ('date',)
