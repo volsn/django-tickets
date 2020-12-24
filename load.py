@@ -9,8 +9,13 @@ django.setup()
 from basic_app.models import Movie, Session
 
 
-def load(filename='Cinema.xml'):
-    with open('Cinema.xml', 'r') as file:
+def load(filename='Cinema.xml', drop_data=True):
+
+    if drop_data:
+        Movie.objects.all().delete()
+        Session.objects.all().delete()
+
+    with open(filename, 'r') as file:
         contents = file.read()
         soup = BeautifulSoup(contents, 'lxml')
 
