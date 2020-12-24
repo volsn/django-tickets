@@ -7,3 +7,6 @@ tickets/.env
 !**/migrations
 !**/migrations/__init__.py
 
+.ipynb_checkpoints
+.idea
+
