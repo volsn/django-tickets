@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -28,3 +29,19 @@ class Session(models.Model):
     class Meta:
         verbose_name = 'Сеанс'
         verbose_name_plural = 'Сеансы'
+
+
+class Ticket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,
+                             verbose_name='пользователь')
+    session = models.ForeignKey(Session, on_delete=models.CASCADE,
+                                verbose_name='сеанс')
+    bought_at = models.DateTimeField(auto_now_add=True,
+                                     verbose_name='Дата и время покупки')
+
+    def __str__(self):
+        return self.user.username + ' ' + str(self.session)
+
+    class Meta:
+        verbose_name = 'Билет'
+        verbose_name_plural = 'Билеты'
