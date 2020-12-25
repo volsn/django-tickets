@@ -58,10 +58,10 @@ def user_login(request):
                 login(request, user)
                 return HttpResponseRedirect(reverse('basic_app:index'))
             else:
-                return HttpResponse('ACCOUNT NOT ACTIVE')
+                return render(request, 'basic_app/login.html', context={'error': 'Аккаунт не активен'})
 
         else:
             print('Authentication failed for {}'.format(username))
-            return HttpResponse('Login failed')
+            return render(request, 'basic_app/login.html', context={'error': 'Ошибка аутентификации'})
     else:
         return render(request, 'basic_app/login.html')
